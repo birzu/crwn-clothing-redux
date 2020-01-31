@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px
+}
+
+body {
+  min-height: 100vh;
+  padding: 3rem 0 0 0;
+  font-family: $font-primary;
+  font-weight: 300;
+  line-height: 1.6;
+  color: $color-text;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  @include layout(base);
+}

@@ -1,0 +1,80 @@
+@mixin absoluteCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/******************************
+-- gridnameformats: [base, base/section]
+*/
+@mixin layout($gridname) {
+  @if $gridname == base {
+    display: grid;
+    grid-template-columns:
+      [lpad-start] 5vw [lpad-end content-start] repeat(
+        8,
+        [col-start] minmax(max-content, calc(90vw / 8)) [col-end]
+      )
+      [content-end rpad-start] 5vw [rpad-end];
+    grid-template-rows: 8rem 1fr;
+  }
+}
+
+/**********************
+-- MEDIA QUERIES FOR DIFFERENT BREAPOINTS
+
+$breakpoint
+    legacy-phones: max-width 480px 30em
+    smartphones: max-width 720px 45em
+    tab-portrait: max-width 900px 56.25em
+    tab-landscape: max-width 1120px 70em
+    baseline-hd: max-width 1280px 80em
+    full-hd: max-width 1920px 120em
+    qhd: max-width 2560px 160em
+    uhd: max-width 3840px 240em
+    ---------------------------------
+    ADD MORE TO LIST WHEN STYLES BREAK
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == uhd {
+    @media only screen and (max-width: 240em) {
+      @content;
+    }
+  }
+  @if $breakpoint == qhd {
+    @media only screen and (max-width: 160em) {
+      @content;
+    }
+  }
+  @if $breakpoint == full-hd {
+    @media only screen and (max-width: 120em) {
+      @content;
+    }
+  }
+  @if $breakpoint == baseline-hd {
+    @media only screen and (max-width: 80em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-landscape {
+    @media only screen and (max-width: 70em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-portrait {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+  @if $breakpoint == smartphone {
+    @media only screen and (max-width: 45em) {
+      @content;
+    }
+  }
+  @if $breakpoint == legacy-phone {
+    @media only screen and (max-width: 30em) {
+      @content;
+    }
+  }
+}
