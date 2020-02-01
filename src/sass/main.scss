@@ -2,7 +2,11 @@
 @import 'abstracts/mixins';
 
 @import 'utils/utils';
-
 @import 'base/base';
 @import 'base/animations';
 @import 'base/typography';
+
+@import 'pages/home';
+@import 'pages/checkout';
+@import 'pages/collections';
+@import 'pages/shop';

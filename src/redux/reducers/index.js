@@ -2,7 +2,11 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-const rootReducer = combineReducers({});
+import menuReducer from './menu.reducer';
+
+const rootReducer = combineReducers({
+  menu: menuReducer
+});
 
 const persistConfig = {
   key: 'root',

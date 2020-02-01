@@ -14,7 +14,7 @@
     grid-template-columns:
       [lpad-start] 5vw [lpad-end content-start] repeat(
         8,
-        [col-start] minmax(max-content, calc(90vw / 8)) [col-end]
+        [col-start] 1fr [col-end]
       )
       [content-end rpad-start] 5vw [rpad-end];
     grid-template-rows: 8rem 1fr;

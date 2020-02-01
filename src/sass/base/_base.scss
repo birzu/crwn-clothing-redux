@@ -11,13 +11,20 @@ html {
 }
 
 body {
-  min-height: 100vh;
-  padding: 3rem 0 0 0;
+  max-height: 100vh;
   font-family: $font-primary;
   font-weight: 300;
   line-height: 1.6;
   color: $color-text;
   box-sizing: border-box;
-  text-rendering: optimizeLegibility;
+  // text-rendering: optimizeLegibility;
+}
+
+#root {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
   @include layout(base);
 }
