@@ -10,6 +10,7 @@ import {
 import MenuItem from '../menu-item/MenuItem.component';
 
 import './Menu.styles.scss';
+import Spinner from '../loading-spinner/Spinner.component';
 
 const mapDispatchToProps = dispatch => ({
   loadMenu: () => dispatch(loadMenuStart())
@@ -26,8 +27,7 @@ class Menu extends React.Component {
     loadMenu();
   }
 
-  render() {
-    const { sections } = this.props;
+  renderMenu = sections => {
     return (
       <div className="menu">
         {sections.map(sec => (
@@ -35,6 +35,11 @@ class Menu extends React.Component {
         ))}
       </div>
     );
+  };
+
+  render() {
+    const { sections, loading } = this.props;
+    return loading ? <Spinner /> : this.renderMenu(sections);
   }
 }
 
