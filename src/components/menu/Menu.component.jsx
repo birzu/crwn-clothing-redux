@@ -21,7 +21,7 @@ const mapStateToProps = createStructuredSelector({
   loading: selectMenuLoading
 });
 
-class Menu extends React.Component {
+class Menu extends React.PureComponent {
   componentDidMount() {
     const { loadMenu } = this.props;
     loadMenu();
@@ -39,6 +39,7 @@ class Menu extends React.Component {
 
   render() {
     const { sections, loading } = this.props;
+
     return loading ? <Spinner /> : this.renderMenu(sections);
   }
 }

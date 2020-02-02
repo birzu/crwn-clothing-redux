@@ -1,0 +1,64 @@
+.form-signin {
+  width: 50rem;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 3rem;
+
+  &__input-email,
+  &__input-password {
+    color: #5d5d5d;
+    font-weight: 400;
+    font-family: inherit;
+    font-size: 1.4rem;
+    background-color: inherit;
+    width: 100%;
+    padding: 1.2rem 2rem 1.2rem 4rem;
+    border-radius: 3px;
+    border: 1px solid #4c4c4c;
+    outline: none;
+    margin-bottom: 2rem;
+    line-height: 1;
+
+    &::placeholder {
+      color: #5d5d5d;
+      font-size: 1.6rem;
+    }
+
+    &:focus {
+      border: 1px solid #55c5c5;
+    }
+
+    &:focus:invalid {
+      border: 1px solid #ee2849;
+    }
+  }
+
+  &__label-email,
+  &__label-password {
+    color: #4c4c4c;
+    font-size: 1.6rem;
+    font-weight: 600;
+    align-self: flex-start;
+    margin-bottom: 1.5rem;
+    margin-left: 11%;
+  }
+  &__input-email-wrapper,
+  &__input-password-wrapper {
+    position: relative;
+    width: 78%;
+  }
+
+  &__icon-lock,
+  &__icon-email {
+    position: absolute;
+    top: 1.1rem;
+    left: 1.5rem;
+    height: 2rem;
+    width: 2rem;
+    fill: #b2b2b2;
+    box-shadow: 0 0.4rem 0.7rem 0 rgba(#b2b2b2, 0.1);
+  }
+}

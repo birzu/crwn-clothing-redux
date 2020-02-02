@@ -1,17 +1,12 @@
 // INITIAL STATE
 const INITIAL_STATE = {
   sections: [],
-  loading: false,
   error: null
 };
 
 // ACTION CREATORS
 export const loadMenuStart = () => ({
   type: 'menu/FETCH_SECTIONS/STARTED'
-});
-
-export const loadMenuProgress = () => ({
-  type: 'menu/FETCH_SECTIONS/PROGRESS'
 });
 
 export const loadMenuFinished = sections => ({
@@ -27,9 +22,6 @@ export const loadMenuFailed = error => ({
 // REDUCER
 const menuReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'menu/FETCH_SECTIONS/PROGRESS':
-      return { ...state, loading: true };
-
     case 'menu/FETCH_SECTIONS/FAILED':
       return { ...state, loading: false, error: action.payload };
 

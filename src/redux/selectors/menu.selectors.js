@@ -9,7 +9,7 @@ export const selectSections = createSelector(
 
 export const selectMenuLoading = createSelector(
   [selectMenu],
-  menu => menu.loading
+  menu => menu.sections.length <= 0
 );
 
 export const selectMenuError = createSelector([selectMenu], menu => menu.error);

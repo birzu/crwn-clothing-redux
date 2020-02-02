@@ -1,0 +1,34 @@
+.auth-modal-header {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  &__title {
+    font-weight: 400;
+    line-height: 1;
+    cursor: pointer;
+    &--1 {
+    }
+
+    &--2 {
+    }
+  }
+
+  &__dismis {
+    cursor: pointer;
+    margin-left: auto;
+    align-self: flex-start;
+    margin-top: -3.2rem;
+    margin-right: -1rem;
+    font-size: 2.4rem;
+    color: #ee2849;
+    font-weight: 400;
+  }
+}
+.title-active {
+}
+
+.title-separator {
+  font-size: 2.4rem;
+  align-self: center;
+}

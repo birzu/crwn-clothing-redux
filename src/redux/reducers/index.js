@@ -3,9 +3,11 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import menuReducer from './menu.reducer';
+import authReducer from './auth.reducer';
 
 const rootReducer = combineReducers({
-  menu: menuReducer
+  menu: menuReducer,
+  auth: authReducer
 });
 
 const persistConfig = {

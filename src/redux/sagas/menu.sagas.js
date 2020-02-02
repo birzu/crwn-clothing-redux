@@ -2,7 +2,6 @@ import { call, all, takeLatest, put } from 'redux-saga/effects';
 import {
   loadMenuStart,
   loadMenuFinished,
-  loadMenuProgress,
   loadMenuFailed
 } from '../reducers/menu.reducer';
 import {
@@ -12,7 +11,6 @@ import {
 
 // Workers
 export function* loadMenuData() {
-  yield put(loadMenuProgress());
   try {
     const sectionsRef = yield firestore.collection('sections');
     const sectionsSnapshot = yield sectionsRef.get();
