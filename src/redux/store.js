@@ -1,10 +1,10 @@
 import { applyMiddleware, createStore, compose } from 'redux';
+import { persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 
 import rootReducer from './reducers';
 import rootSaga from './sagas';
-import { persistStore } from 'redux-persist';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

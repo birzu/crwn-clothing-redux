@@ -1,0 +1,53 @@
+.btn {
+  padding: 1.2rem 1.6rem;
+  border: none;
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #3c3c3c;
+
+  &__inner-icon {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1.5rem;
+      margin-left: .7rem;
+  }
+
+  &--signin,
+  &--google {
+    cursor: pointer;
+    width: 50%;
+    background-color: transparent;
+    color: #3c3c3c;
+    border: 2px solid #3c3c3c;
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
+    transform: translateY(30%);
+    transition: transform 0.2s ease-out;
+  }
+
+  &--signin {
+    &:hover {
+      transform: translateY(25%);
+    }
+    &:active {
+      transform: translateY(33%);
+    }
+  }
+
+  &--google {
+      display: flex;
+      align-items: center;
+    background-color: #4285f4;
+    border: 2px solid transparent;
+    color: #fff;
+    transform: translateY(65%);
+    &:hover {
+      transform: translateY(62%);
+    }
+    &:active {
+      transform: translateY(68%);
+    }
+  }
+}

@@ -2,16 +2,22 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ReactComponent as EmailIcon } from '../../assets/iconmonstr-email-3.svg';
 import { ReactComponent as LockIcon } from '../../assets/iconmonstr-lock-1.svg';
+import { ReactComponent as GoogleIcon } from '../../assets/google-brands.svg';
 
 import FormInput from '../form-input/FormInput.component';
+import CustomButton from '../custom-button/CustomButton.component';
 
 import FormError from './ErrorMsg.component';
 import './SignInForm.styles.scss';
 
 const SignInForm = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, setValue } = useForm();
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    console.log(data);
+    setValue('email', '');
+    setValue('password', '');
+  };
 
   return (
     <form className="form-signin" onSubmit={handleSubmit(onSubmit)}>
@@ -58,7 +64,12 @@ const SignInForm = () => {
       </FormInput>
       <FormError errors={errors} name="password" />
 
-      <FormInput type="submit" className="form-input__btn" />
+      <CustomButton type="submit" cls="btn--signin" text="Log in" />
+      <CustomButton
+        type="submit"
+        cls="btn--google"
+        text="Sign in with google">
+        <GoogleIcon className="btn__inner-icon"/></CustomButton>
     </form>
   );
 };

@@ -1,13 +1,18 @@
 .auth-modal-header {
-  padding-top: 5rem;
+  padding-top: 4.8rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   &__title {
     font-weight: 400;
-    line-height: 1;
+    margin-top: -7px;
+    line-height: 1.6;
+    font-size: 1.8rem;
+    align-self: flex-end;
+    border-bottom: 3px solid transparent;
     cursor: pointer;
     &--1 {
+      margin-right: 1.4rem;
     }
 
     &--2 {
@@ -25,10 +30,12 @@
     font-weight: 400;
   }
 }
-.title-active {
+.active {
+  border-bottom: 3px solid #3c3c3c;
 }
 
 .title-separator {
   font-size: 2.4rem;
   align-self: center;
+  align-self: flex-end;
 }
