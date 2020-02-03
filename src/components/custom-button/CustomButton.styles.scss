@@ -8,14 +8,15 @@
   background-color: #3c3c3c;
 
   &__inner-icon {
-      width: 2rem;
-      height: 2rem;
-      margin-right: 1.5rem;
-      margin-left: .7rem;
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1.5rem;
+    margin-left: 0.7rem;
   }
 
   &--signin,
-  &--google {
+  &--google,
+  &--register {
     cursor: pointer;
     width: 50%;
     background-color: transparent;
@@ -27,7 +28,8 @@
     transition: transform 0.2s ease-out;
   }
 
-  &--signin {
+  &--signin,
+  &--register {
     &:hover {
       transform: translateY(25%);
     }
@@ -37,8 +39,8 @@
   }
 
   &--google {
-      display: flex;
-      align-items: center;
+    display: flex;
+    align-items: center;
     background-color: #4285f4;
     border: 2px solid transparent;
     color: #fff;

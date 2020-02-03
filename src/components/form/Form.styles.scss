@@ -1,4 +1,5 @@
-.form-signin {
+.form-signin,
+.form-register {
   width: 50rem;
   height: 46rem;
   display: flex;
@@ -8,7 +9,8 @@
   margin-top: 3rem;
 
   &__input-email,
-  &__input-password {
+  &__input-password,
+  &__input-username {
     color: #5d5d5d;
     font-weight: 400;
     font-family: inherit;
@@ -37,7 +39,8 @@
   }
 
   &__label-email,
-  &__label-password {
+  &__label-password,
+  &__label-username {
     color: #4c4c4c;
     font-size: 1.6rem;
     font-weight: 600;
@@ -49,15 +52,18 @@
   &__label-password {
     margin-top: 1.5rem;
   }
+
   &__input-email-wrapper,
-  &__input-password-wrapper {
+  &__input-password-wrapper,
+  &__input-username-wrapper {
     position: relative;
     width: 78%;
     height: 5.5rem;
   }
 
   &__icon-lock,
-  &__icon-email {
+  &__icon-email,
+  &__icon-user {
     position: absolute;
     top: 1.1rem;
     left: 1.5rem;
@@ -65,5 +71,21 @@
     width: 2rem;
     fill: #b2b2b2;
     box-shadow: 0 0.4rem 0.7rem 0 rgba(#b2b2b2, 0.1);
+  }
+
+  &__action {
+    &:not(:last-child) {
+      margin-top: 3rem;
+    }
+  }
+}
+
+.form-register {
+  height: 54rem;
+
+  &__action {
+    &:not(:last-child) {
+      margin-top: 3rem;
+    }
   }
 }

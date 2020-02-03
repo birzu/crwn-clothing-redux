@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
-import Modal from '../modal/Modal.component';
+import FormModal from '../form/form-modal/FormModal.component';
 
 import { toggleAuthModalHidden } from '../../redux/reducers/auth.reducer';
 import { selectAuthModalHidden } from '../../redux/selectors/auth.selectors';
@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
 
 const Header = ({ authModalHidden, toggleAuthModalHidden }) => {
   const renderModal = () => {
-    return <Modal />;
+    return <FormModal />;
   };
   const renderHeader = () => {
     return (

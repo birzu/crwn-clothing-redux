@@ -1,9 +1,9 @@
 import React from 'react';
 import { ErrorMessage } from 'react-hook-form';
 
-import { ReactComponent as ErrorIcon } from '../../assets/iconmonstr-warning-8.svg';
+import { ReactComponent as ErrorIcon } from '../../../assets/iconmonstr-warning-8.svg';
 
-import './ErrorMsg.styles.scss';
+import './FormError.styles.scss';
 
 const FormError = ({ errors, name }) => {
   return (

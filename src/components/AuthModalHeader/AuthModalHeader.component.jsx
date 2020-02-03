@@ -10,12 +10,15 @@ const mapDispatchToProps = dispatch => ({
   toggleAuthModalHidden: () => dispatch(toggleAuthModalHidden())
 });
 
-const AuthModalHeader = ({ toggleAuthModalHidden }) => {
+const AuthModalHeader = ({ toggleAuthModalHidden, toggleCurrentForm }) => {
   const [titleActive, setTitleActive] = useState(1);
   return (
     <div className="auth-modal-header">
       <div
-        onClick={() => setTitleActive(1)}
+        onClick={() => {
+          setTitleActive(1);
+          toggleCurrentForm('signin');
+        }}
         className={
           titleActive === 1
             ? `auth-modal-header__title auth-modal-header__title--1 active`
@@ -26,7 +29,10 @@ const AuthModalHeader = ({ toggleAuthModalHidden }) => {
       </div>
       <span className="title-separator"></span>
       <div
-        onClick={() => setTitleActive(2)}
+        onClick={() => {
+          setTitleActive(2);
+          toggleCurrentForm('register');
+        }}
         className={
           titleActive === 2
             ? `auth-modal-header__title auth-modal-header__title--2 active`
