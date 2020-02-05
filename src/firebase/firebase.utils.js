@@ -26,3 +26,36 @@ export const extractFromQuerySnapshot = async querySnapshot => {
     querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
   );
 };
+
+export const addItemsToCollectionsMap = async querySnapshot => {
+  const collections = await Promise.all(
+    querySnapshot.docs.map(async doc => {
+      const itemRef = firestore
+        .collection('items')
+        .where('_collection', '==', doc.ref);
+      const collection = doc.data().title.toLowerCase();
+      const itemsSnapShot = await itemRef.get();
+      return {
+        collection,
+        ...doc.data(),
+        id: doc.id,
+        items: [...itemsSnapShot.docs.map(el => ({ ...el.data(), id: el.id }))]
+      };
+    })
+  );
+
+  let data = {};
+  collections.forEach(col => (data[col.collection] = col));
+  return data;
+};
+
+export const createCollectionsMap = async querySnapshot => {
+  let collections = {};
+  const docs = await Promise.all(
+    querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, items: [] }))
+  );
+
+  docs.forEach(doc => (collections[doc.title.toLowerCase()] = doc));
+
+  return collections;
+};

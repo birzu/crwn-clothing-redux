@@ -1,7 +1,7 @@
 // Initial state
 const INITIAL_STATE = {
   authModalHidden: true,
-  currentForm: 'signin'
+  currentForm: ''
 };
 // Action Creators
 export const toggleAuthModalHidden = () => ({

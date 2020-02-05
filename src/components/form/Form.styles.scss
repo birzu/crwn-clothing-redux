@@ -10,7 +10,8 @@
 
   &__input-email,
   &__input-password,
-  &__input-username {
+  &__input-username,
+  &__input-password-confirm {
     color: #5d5d5d;
     font-weight: 400;
     font-family: inherit;
@@ -40,7 +41,8 @@
 
   &__label-email,
   &__label-password,
-  &__label-username {
+  &__label-username,
+  &__label-password-confirm {
     color: #4c4c4c;
     font-size: 1.6rem;
     font-weight: 600;
@@ -55,7 +57,8 @@
 
   &__input-email-wrapper,
   &__input-password-wrapper,
-  &__input-username-wrapper {
+  &__input-username-wrapper,
+  &__input-password-confirm-wrapper {
     position: relative;
     width: 78%;
     height: 5.5rem;
@@ -81,11 +84,5 @@
 }
 
 .form-register {
-  height: 54rem;
-
-  &__action {
-    &:not(:last-child) {
-      margin-top: 3rem;
-    }
-  }
+  height: 62rem;
 }

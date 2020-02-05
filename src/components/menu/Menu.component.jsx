@@ -2,32 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { loadMenuStart } from '../../redux/reducers/menu.reducer';
 import {
   selectSections,
   selectMenuLoading
 } from '../../redux/selectors/menu.selectors';
-import MenuItem from '../menu-item/MenuItem.component';
 
-import './Menu.styles.scss';
+import MenuItem from '../menu-item/MenuItem.component';
 import Spinner from '../loading-spinner/Spinner.component';
 
-const mapDispatchToProps = dispatch => ({
-  loadMenu: () => dispatch(loadMenuStart())
-});
+import './Menu.styles.scss';
 
 const mapStateToProps = createStructuredSelector({
   sections: selectSections,
   loading: selectMenuLoading
 });
-
-class Menu extends React.PureComponent {
-  componentDidMount() {
-    const { loadMenu } = this.props;
-    loadMenu();
-  }
-
-  renderMenu = sections => {
+const Menu = ({ sections, loading }) => {
+  const renderMenu = sections => {
     return (
       <div className="menu">
         {sections.map(sec => (
@@ -37,11 +27,7 @@ class Menu extends React.PureComponent {
     );
   };
 
-  render() {
-    const { sections, loading } = this.props;
+  return loading ? <Spinner /> : renderMenu(sections);
+};
 
-    return loading ? <Spinner /> : this.renderMenu(sections);
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, null)(Menu);

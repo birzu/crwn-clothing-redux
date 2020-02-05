@@ -14,9 +14,15 @@ import CustomButton from '../../custom-button/CustomButton.component';
 import '../Form.styles.scss';
 
 const RegisterForm = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, watch, setValue } = useForm();
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    setValue('username', '');
+    setValue('email', '');
+    setValue('password', '');
+    setValue('password-confirm', '');
+    console.log(data);
+  };
 
   return (
     <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
@@ -27,9 +33,25 @@ const RegisterForm = () => {
         label="Username"
         inputCls="form-register__input-username"
         labelCls="form-register__label-username"
-        placeholder="•••••••••••"
+        placeholder="username"
         inputRef={register({
-          required: { value: true, message: 'Username is required to register' }
+          required: {
+            value: true,
+            message: 'Username is required to register'
+          },
+          minLength: {
+            value: 4,
+            message: 'Username can not be shorter than 4 characters'
+          },
+          maxLength: {
+            value: 15,
+            message: 'Username can not be longer than 15 characters'
+          },
+          pattern: {
+            value: /^[A-Za-z0-9_]{1,15}$/,
+            message:
+              'Username can contain uppercase letters, lowercase letters, numbers and _ '
+          }
         })}
       >
         <UserIcon className="form-register__icon-user" />{' '}
@@ -63,12 +85,39 @@ const RegisterForm = () => {
         labelCls="form-register__label-password"
         placeholder="•••••••••••"
         inputRef={register({
-          required: { value: true, message: 'Password is required to register' }
+          required: {
+            value: true,
+            message: 'Password is required to register'
+          },
+          pattern: {
+            value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/,
+            message:
+              'Password must have one lowercase, one uppercase letter and one number'
+          }
         })}
       >
         <LockIcon className="form-register__icon-lock" />{' '}
       </FormInput>
       <FormError errors={errors} name="password" />
+      <FormInput
+        id="form-input-password-confirm"
+        type="password"
+        name="password-confirm"
+        label="Confirm Password"
+        inputCls="form-register__input-password-confirm"
+        labelCls="form-register__label-password-confirm"
+        placeholder="•••••••••••"
+        inputRef={register({
+          required: {
+            value: true,
+            message: 'Password is required to register'
+          },
+          validate: val => val === watch('password') || 'Password do not match'
+        })}
+      >
+        <LockIcon className="form-register__icon-lock" />{' '}
+      </FormInput>
+      <FormError errors={errors} name="password-confirm" />
       <CustomButton
         type="submit"
         text="Register"

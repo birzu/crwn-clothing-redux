@@ -12,11 +12,11 @@
   @if $gridname == base {
     display: grid;
     grid-template-columns:
-      [lpad-start] 5vw [lpad-end content-start] repeat(
+      [lpad-start] 3vw [lpad-end content-start] repeat(
         8,
         [col-start] 1fr [col-end]
       )
-      [content-end rpad-start] 5vw [rpad-end];
+      [content-end rpad-start] 3vw [rpad-end];
     grid-template-rows: 8rem 1fr;
   }
 }

@@ -1,26 +1,37 @@
-import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import React from 'react';
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 
-import { toggleAuthModalHidden } from '../../redux/reducers/auth.reducer';
+import {
+  toggleAuthModalHidden,
+  toggleCurrentForm
+} from '../../redux/reducers/auth.reducer';
+import { selectCurrentForm } from '../../redux/selectors/auth.selectors';
 
 import './AuthModalHeader.styles.scss';
 
 const mapDispatchToProps = dispatch => ({
-  toggleAuthModalHidden: () => dispatch(toggleAuthModalHidden())
+  toggleAuthModalHidden: () => dispatch(toggleAuthModalHidden()),
+  toggleCurrentForm: formType => dispatch(toggleCurrentForm(formType))
 });
 
-const AuthModalHeader = ({ toggleAuthModalHidden, toggleCurrentForm }) => {
-  const [titleActive, setTitleActive] = useState(1);
+const mapStateToProps = createStructuredSelector({
+  currentForm: selectCurrentForm
+});
+
+const AuthModalHeader = ({
+  toggleAuthModalHidden,
+  toggleCurrentForm,
+  currentForm
+}) => {
   return (
     <div className="auth-modal-header">
       <div
         onClick={() => {
-          setTitleActive(1);
           toggleCurrentForm('signin');
         }}
         className={
-          titleActive === 1
+          currentForm === 'signin'
             ? `auth-modal-header__title auth-modal-header__title--1 active`
             : 'auth-modal-header__title auth-modal-header__title--1'
         }
@@ -30,11 +41,10 @@ const AuthModalHeader = ({ toggleAuthModalHidden, toggleCurrentForm }) => {
       <span className="title-separator"></span>
       <div
         onClick={() => {
-          setTitleActive(2);
           toggleCurrentForm('register');
         }}
         className={
-          titleActive === 2
+          currentForm === 'register'
             ? `auth-modal-header__title auth-modal-header__title--2 active`
             : 'auth-modal-header__title auth-modal-header__title--2'
         }
@@ -51,4 +61,4 @@ const AuthModalHeader = ({ toggleAuthModalHidden, toggleCurrentForm }) => {
   );
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(AuthModalHeader));
+export default connect(mapStateToProps, mapDispatchToProps)(AuthModalHeader);

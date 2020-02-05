@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  max-height: 100vh;
+  min-height: 100vh;
   font-family: $font-primary;
   font-weight: 300;
   line-height: 1.6;
@@ -21,10 +21,18 @@ body {
 }
 
 #root {
-  height: 100%;
+  min-height: 100%;
 }
 
 .app {
-  height: 100%;
+  min-height: 100%;
   @include layout(base);
+}
+
+.link {
+  &:link,
+  &:visited {
+    text-decoration: none;
+    color: inherit;
+  }
 }

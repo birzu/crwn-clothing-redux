@@ -47,11 +47,6 @@ const SignInForm = () => {
           minLength: {
             value: 8,
             message: 'Password must have at least 8 character'
-          },
-          pattern: {
-            value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/,
-            message:
-              'Password must have one lowercase, one uppercase letter and one number'
           }
         })}
         label="Password"

@@ -7,10 +7,7 @@ import RegisterForm from '../register-form/RegisterForm.component';
 import AuthModalHeader from '../../AuthModalHeader/AuthModalHeader.component';
 
 import { selectCurrentForm } from '../../../redux/selectors/auth.selectors';
-import {
-  toggleAuthModalHidden,
-  toggleCurrentForm
-} from '../../../redux/reducers/auth.reducer';
+import { toggleAuthModalHidden } from '../../../redux/reducers/auth.reducer';
 
 import './FormModal.styles.scss';
 
@@ -19,8 +16,7 @@ import './FormModal.styles.scss';
  * content = { signin: SignInForm, register: Register }
  */
 const mapDispatchToProps = dispatch => ({
-  toggleAuthModalHidden: () => dispatch(toggleAuthModalHidden()),
-  toggleCurrentForm: formType => dispatch(toggleCurrentForm(formType))
+  toggleAuthModalHidden: () => dispatch(toggleAuthModalHidden())
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -29,7 +25,6 @@ const mapStateToProps = createStructuredSelector({
 
 const ModalWithHeader = (ModalHeader, content) => ({
   toggleAuthModalHidden,
-  toggleCurrentForm,
   currentForm
 }) => {
   const Form = content[currentForm];
@@ -37,7 +32,7 @@ const ModalWithHeader = (ModalHeader, content) => ({
     <div className="modal-wrapper" onClick={() => toggleAuthModalHidden()}>
       <div className="modal" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <ModalHeader toggleCurrentForm={toggleCurrentForm} />
+          <ModalHeader />
         </div>
         {<Form />}
       </div>

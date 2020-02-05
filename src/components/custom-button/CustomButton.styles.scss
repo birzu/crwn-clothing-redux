@@ -12,6 +12,14 @@
     height: 2rem;
     margin-right: 1.5rem;
     margin-left: 0.7rem;
+
+    &--cart {
+      margin-right: 1rem;
+      margin-left: 0rem;
+      fill: #2e2e2e;
+      width: 2.5rem;
+      height: 2.5rem;
+    }
   }
 
   &--signin,
@@ -51,5 +59,18 @@
     &:active {
       transform: translateY(68%);
     }
+  }
+
+  &--cart {
+    cursor: pointer;
+    padding: 1.2rem 2.5rem;
+    border-radius: 0.7rem;
+    background-color: #e6e6e6;
+    color: #2e2e2e;
+    font-size: 1.5rem;
+    font-family: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

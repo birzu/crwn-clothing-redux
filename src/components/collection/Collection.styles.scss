@@ -1,0 +1,24 @@
+.collection {
+  display: flex;
+  flex-direction: column;
+
+  &:not(:last-child) {
+    margin: 2.6rem 0;
+  }
+
+  &:not(:first-child) {
+    border-top: 1px solid #e6e6e6;
+  }
+
+  &__header {
+    margin-bottom: 0.8rem;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    grid-template-rows: 40rem;
+    grid-column-gap: 6rem;
+    grid-row-gap: 1.6rem;
+  }
+}

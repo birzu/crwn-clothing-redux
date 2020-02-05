@@ -2,8 +2,9 @@
   grid-column: lpad-end / rpad-start;
   grid-row: 1 / 2;
   border-bottom: 1px solid #e6e6e6;
+  width: calc(100% - 20rem);
   align-self: end;
-  padding: 0 10rem;
+  justify-self: center;
   display: flex;
   align-items: flex-start;
 

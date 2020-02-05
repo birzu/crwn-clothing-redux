@@ -28,7 +28,7 @@ const menuReducer = (state = INITIAL_STATE, action) => {
     case 'menu/FETCH_SECTIONS/SUCCESS':
       return {
         ...state,
-        sections: [...state.sections, ...action.payload],
+        sections: [...action.payload],
         loading: false
       };
 
