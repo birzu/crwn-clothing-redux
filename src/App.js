@@ -7,6 +7,7 @@ import { hideCart } from './redux/reducers/cart.reducer';
 
 import HomePage from './pages/HomePage.component';
 import ShopPage from './pages/ShopPage.component';
+import CollectionPage from './pages/CollectionPage.component';
 
 const mapDispatchToProps = dispatch => ({
   hideCart: () => dispatch(hideCart())
@@ -19,6 +20,11 @@ const App = ({ hideCart }) => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />
+        <Route
+          exact
+          path="/collections/:collectionId"
+          component={CollectionPage}
+        />
       </Switch>
     </div>
   );

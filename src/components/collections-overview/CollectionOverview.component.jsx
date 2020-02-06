@@ -27,6 +27,7 @@ const CollectionOverview = ({ collections, collectionsExist }) => {
               key={collections[el].id}
               title={collections[el].title}
               items={collections[el].items}
+              overview
             />
           );
         })}

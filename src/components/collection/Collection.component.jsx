@@ -4,12 +4,12 @@ import _ from 'lodash';
 
 import './Collection.styles.scss';
 
-const Collection = ({ title, items }) => {
+const Collection = ({ title, items, overview, preview }) => {
   return (
     <div className="collection">
       <h2 className="collection__header heading-2">{title.toUpperCase()}</h2>
       <div className="collection__content">
-        {items
+        {items && overview
           ? items
               .filter((el, i) => i < 4)
               .map(item => (
@@ -18,6 +18,14 @@ const Collection = ({ title, items }) => {
                   item={_.omit(item, '_collection')}
                 />
               ))
+          : null}
+        {items && preview
+          ? items.map(item => (
+              <CollectionItemCard
+                key={item.id}
+                item={_.omit(item, '_collection')}
+              />
+            ))
           : null}
       </div>
     </div>

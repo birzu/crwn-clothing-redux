@@ -6,12 +6,10 @@ export const selectCollections = createSelector([selectShop], shop =>
   Object.keys(shop.collections).length ? { ...shop.collections } : {}
 );
 
-export const selectCollectionByTitle = createSelector(
+export const selectCollectionById = createSelector(
   [selectShop],
-  shop => colTitle =>
-    shop.collections[colTitle.toLowerCase()]
-      ? shop.collections[colTitle.toLowerCase()].items
-      : []
+  shop => collectionId =>
+    shop.collections[collectionId] ? shop.collections[collectionId] : {}
 );
 
 export const selectCollectionsExists = createSelector(

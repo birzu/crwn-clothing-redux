@@ -1,10 +1,17 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import './MenuItem.styles.scss';
 
-const MenuItem = ({ size, title, imageUrl }) => {
+const MenuItem = ({ _collectionId, size, title, imageUrl, history }) => {
   return (
-    <figure className={`menu-item ${size ? `menu-item--${size}` : ''}`}>
+    <figure
+      className={`menu-item ${size ? `menu-item--${size}` : ''}`}
+      onClick={e => {
+        e.stopPropagation();
+        history.push(`/collections/${_collectionId}`);
+      }}
+    >
       <img src={imageUrl} className="menu-item__img" alt="menu"></img>
       <figcaption className="menu-item__details">
         <h4 className="menu-item__title heading-4">{title.toUpperCase()}</h4>
@@ -14,4 +21,4 @@ const MenuItem = ({ size, title, imageUrl }) => {
   );
 };
 
-export default MenuItem;
+export default withRouter(MenuItem);

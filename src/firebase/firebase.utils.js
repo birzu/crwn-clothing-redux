@@ -33,7 +33,7 @@ export const addItemsToCollectionsMap = async querySnapshot => {
       const itemRef = firestore
         .collection('items')
         .where('_collection', '==', doc.ref);
-      const collection = doc.data().title.toLowerCase();
+      const collection = doc.id;
       const itemsSnapShot = await itemRef.get();
       return {
         collection,
