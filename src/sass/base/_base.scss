@@ -17,6 +17,7 @@ body {
   line-height: 1.6;
   color: $color-text;
   box-sizing: border-box;
+  background-color: $bg-color;
   // text-rendering: optimizeLegibility;
 }
 
@@ -34,5 +35,14 @@ body {
   &:visited {
     text-decoration: none;
     color: inherit;
+  }
+
+  &__inner-icon {
+    &--menu {
+      margin-right: 0.8rem;
+      width: 1.6rem;
+      height: 1.6rem;
+      fill: #7a7a7a;
+    }
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import CollectionItemCard from '../collection-item-card/CollectionItemCard.component';
+import _ from 'lodash';
 
 import './Collection.styles.scss';
 
@@ -10,13 +11,11 @@ const Collection = ({ title, items }) => {
       <div className="collection__content">
         {items
           ? items
-              .filter((_, i) => i < 4)
-              .map(({ id, name, price, imageUrl }) => (
+              .filter((el, i) => i < 4)
+              .map(item => (
                 <CollectionItemCard
-                  key={id}
-                  name={name}
-                  price={price}
-                  imageUrl={imageUrl}
+                  key={item.id}
+                  item={_.omit(item, '_collection')}
                 />
               ))
           : null}

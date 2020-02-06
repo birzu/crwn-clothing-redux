@@ -1,0 +1,51 @@
+.cart-item {
+  width: calc(100%-5rem);
+  display: flex;
+  font-size: 1.4rem;
+  margin: 2rem 2.5rem 0 2rem;
+
+  &__img {
+    width: 6rem;
+    height: 6.8rem;
+  }
+
+  &__details {
+    width: 42%;
+    margin-left: 1rem;
+    font-weight: 400;
+    font-size: 1.4rem;
+    align-self: center;
+  }
+
+  &__name {
+    font-size: 1.35rem;
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+  }
+
+  &__actions {
+    align-self: center;
+    display: flex;
+    font-size: 1.6rem;
+    margin-left: auto;
+    align-items: center;
+  }
+
+  &__quantity-inc,
+  &__quantity-dec {
+    cursor: pointer;
+    margin: 0 0.7rem;
+  }
+
+  &__quantity {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  &__remove {
+    cursor: pointer;
+    font-size: 2rem;
+    margin-left: auto;
+    align-self: center;
+  }
+}

@@ -1,14 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 import Header from './components/header/Header.component';
+import { hideCart } from './redux/reducers/cart.reducer';
 
 import HomePage from './pages/HomePage.component';
 import ShopPage from './pages/ShopPage.component';
 
-const App = () => {
+const mapDispatchToProps = dispatch => ({
+  hideCart: () => dispatch(hideCart())
+});
+
+const App = ({ hideCart }) => {
   return (
-    <div className="app">
+    <div className="app" onClick={() => hideCart()}>
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -18,4 +24,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect(null, mapDispatchToProps)(App);
