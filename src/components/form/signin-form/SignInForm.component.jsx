@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { signInWithGoogle } from '../../../firebase/firebase.utils';
+
 import { ReactComponent as EmailIcon } from '../../../assets/iconmonstr-email-3.svg';
 import { ReactComponent as LockIcon } from '../../../assets/iconmonstr-lock-1.svg';
 import { ReactComponent as GoogleIcon } from '../../../assets/google-brands.svg';
@@ -66,9 +68,10 @@ const SignInForm = () => {
         text="Log in"
       />
       <CustomButton
-        type="submit"
+        type="button"
         cls="form-signin__action btn--google"
         text="Sign in with google"
+        onClick={() => signInWithGoogle()}
       >
         <GoogleIcon className="btn__inner-icon" />
       </CustomButton>

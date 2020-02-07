@@ -56,7 +56,7 @@
     &--register {
       font-size: 1.4rem;
       font-weight: 600;
-      background-color: #ef2849;
+      background-color: #c72e45;
       padding: 0.6rem 1rem;
       color: #fff;
       border-radius: 0.6rem;
@@ -71,4 +71,18 @@
       margin-top: 0.7rem;
     }
   }
+
+  &__dropdown-wrapper {
+    display: inline-block;
+    position: relative;
+  }
+}
+
+// REFERING TO CLASS SELECTOR OUTSIDE OF THIS FILE
+.app-header__link--shop:hover + .shop-dropdown {
+  display: block;
+}
+
+.app-header__dropdown-wrapper:hover .shop-dropdown {
+  display: block;
 }

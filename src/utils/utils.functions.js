@@ -1,4 +1,9 @@
-import _ from 'lodash';
+export const omitItem = (obj, item) => {
+  const output = {};
+  const filteredKeys = Object.keys(obj).filter(key => key !== item);
+  filteredKeys.forEach(key => (output[key] = obj[key]));
+  return output;
+};
 
 // function to add items to cart in cart reducer
 export const addItem = (targetObj, item) => {
@@ -19,7 +24,7 @@ export const addItem = (targetObj, item) => {
 
 export const removeItem = (targetObj, itemId) => {
   if (Object.keys(targetObj).length > 1) {
-    return _.omit(targetObj, itemId);
+    return omitItem(targetObj, itemId);
   }
   return {};
 };

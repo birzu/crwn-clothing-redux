@@ -5,8 +5,6 @@ import { createStructuredSelector } from 'reselect';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { ReactComponent as MenuIcon } from '../../assets/iconmonstr-menu-2.svg';
 
-import FormModal from '../form/form-modal/FormModal.component';
-
 import {
   toggleAuthModalHidden,
   toggleCurrentForm
@@ -17,6 +15,9 @@ import { selectAuthModalHidden } from '../../redux/selectors/auth.selectors';
 
 import CartIcon from '../cart-icon/CartIcon.component';
 import CartModal from '../cart-modal/CartModal.component';
+import FormModal from '../form/form-modal/FormModal.component';
+import ShopDropdown from '../shop-dropdown/ShopDropdown.component';
+
 import './Header.styles.scss';
 
 const mapStateToProps = createStructuredSelector({
@@ -52,13 +53,16 @@ const Header = ({
           <Link className="link app-header__link app-header__link--home" to="/">
             <Logo className="app-header__logo" />
           </Link>
-          <Link
-            className="link app-header__link app-header__link--shop"
-            to="/shop"
-          >
-            <MenuIcon className="link__inner-icon link__inner-icon--menu" />
-            SHOP
-          </Link>
+          <div className="app-header__dropdown-wrapper">
+            <Link
+              className="link app-header__link app-header__link--shop"
+              to="/shop"
+            >
+              <MenuIcon className="link__inner-icon link__inner-icon--menu" />
+              SHOP
+            </Link>
+            <ShopDropdown />
+          </div>
 
           <ul className="app-header__nav">
             <li

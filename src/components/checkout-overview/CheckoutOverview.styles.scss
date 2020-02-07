@@ -1,0 +1,56 @@
+.checkout-overview {
+  width: calc((100% - 20rem));
+  margin: 0 auto;
+  margin-top: 6rem;
+  display: grid;
+  grid-template-columns:
+    [content-start]60%[content-end summary-start] minmax(max-content, 1fr)
+    [summary-end];
+  grid-template-rows: min-content 1fr;
+
+  &__header {
+    grid-column: content-start / content-end;
+    grid-row: 1 / 2;
+    display: flex;
+    margin-bottom: 1.2rem;
+  }
+
+  &__header-title {
+    flex: none;
+    font-size: 1.6rem;
+    font-weight: 600;
+
+    &--item {
+      flex: 0 0 12.3%;
+    }
+
+    &--details {
+      margin-left: 3.3%;
+    }
+
+    &--remove,
+    &--quantity {
+      margin-left: auto;
+    }
+
+    &--remove {
+      margin-right: 7%;
+    }
+  }
+
+  &__content {
+    grid-column: content-start / summary-end;
+    grid-row: 2 / 3;
+  }
+
+  &__summary {
+    width: 60%;
+    grid-column: summary-start / summary-end;
+    grid-row: 1 / -1;
+    justify-self: center;
+  }
+  &--empty {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+}

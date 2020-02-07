@@ -1,0 +1,40 @@
+.shop-dropdown {
+  width: 24rem;
+  height: 18rem;
+  background-color: #f7f7f7;
+  z-index: 10;
+  position: absolute;
+  top: 100%;
+  left: 8.5%;
+  box-shadow: 0 0.7rem 1rem rgba(#000, 0.1);
+  border-radius: 0.7rem;
+  display: none;
+
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__list-item {
+    cursor: default;
+    padding-left: 1.8rem;
+    flex: 0 0 90%;
+    font-size: 1.4rem;
+    font-weight: 400;
+    border-bottom: 1px solid #ebebeb;
+    &:first-child {
+      padding-top: 1.2rem;
+    }
+    &:last-child {
+      padding-bottom: 1.2rem;
+    }
+  }
+
+  &__link {
+    cursor: pointer;
+    line-height: 1.2;
+    display: inline-block;
+    padding: 0.7rem 0;
+  }
+}

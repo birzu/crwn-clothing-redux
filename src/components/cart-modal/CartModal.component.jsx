@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
-import { clearCart } from '../../redux/reducers/cart.reducer';
+import { clearCart, hideCart } from '../../redux/reducers/cart.reducer';
 import { selectCartItems } from '../../redux/selectors/cart.selectors';
 
 import CartItem from '../cart-item/CartItem.component';
@@ -15,10 +15,11 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  clearCart: () => dispatch(clearCart())
+  clearCart: () => dispatch(clearCart()),
+  hideCart: () => dispatch(hideCart())
 });
 
-const CartModal = ({ cartItems, clearCart }) => {
+const CartModal = ({ cartItems, clearCart, history, hideCart }) => {
   const renderCartItems = items => {
     return (
       <div className="cart-modal" onClick={e => e.stopPropagation()}>
@@ -32,7 +33,15 @@ const CartModal = ({ cartItems, clearCart }) => {
           <p className="cart-modal__clear-cart" onClick={() => clearCart()}>
             Clear cart
           </p>
-          <p className="cart-modal__to-checkout">Checkout</p>
+          <p
+            className="cart-modal__to-checkout"
+            onClick={() => {
+              hideCart();
+              history.push('/checkout');
+            }}
+          >
+            Checkout
+          </p>
         </div>
       </div>
     );
@@ -58,4 +67,6 @@ const CartModal = ({ cartItems, clearCart }) => {
   return cartItems.length ? renderCartItems(cartItems) : renderEmptyCart();
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartModal);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CartModal)
+);

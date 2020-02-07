@@ -1,6 +1,6 @@
 import React from 'react';
 import CollectionItemCard from '../collection-item-card/CollectionItemCard.component';
-import _ from 'lodash';
+import { omitItem } from '../../utils/utils.functions';
 
 import './Collection.styles.scss';
 
@@ -15,7 +15,7 @@ const Collection = ({ title, items, overview, preview }) => {
               .map(item => (
                 <CollectionItemCard
                   key={item.id}
-                  item={_.omit(item, '_collection')}
+                  item={omitItem(item, '_collection')}
                 />
               ))
           : null}
@@ -23,7 +23,7 @@ const Collection = ({ title, items, overview, preview }) => {
           ? items.map(item => (
               <CollectionItemCard
                 key={item.id}
-                item={_.omit(item, '_collection')}
+                item={omitItem(item, '_collection')}
               />
             ))
           : null}
