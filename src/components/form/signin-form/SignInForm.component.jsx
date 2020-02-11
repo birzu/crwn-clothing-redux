@@ -1,28 +1,48 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { signInWithGoogle } from '../../../firebase/firebase.utils';
+import {
+  userSigninGoogle,
+  userSigninEmailAndPassword
+} from '../../../redux/reducers/user.reducer';
+import { createStructuredSelector } from 'reselect';
+import { selectLoading } from '../../../redux/selectors/user.selectors';
 
 import { ReactComponent as EmailIcon } from '../../../assets/iconmonstr-email-3.svg';
 import { ReactComponent as LockIcon } from '../../../assets/iconmonstr-lock-1.svg';
 import { ReactComponent as GoogleIcon } from '../../../assets/google-brands.svg';
 
 import FormError from '../form-error/FormError.component';
-
+import FormLoading from '../form-loading/FormLoading.component';
 import FormInput from '../../form-input/FormInput.component';
 import CustomButton from '../../custom-button/CustomButton.component';
 
 import '../Form.styles.scss';
 
-const SignInForm = () => {
+const mapDispatchToProps = dispatch => ({
+  signInWithGoogle: () => dispatch(userSigninGoogle()),
+  signInWithEmailAndPassword: credentials =>
+    dispatch(userSigninEmailAndPassword(credentials))
+});
+
+const mapStateToProps = createStructuredSelector({
+  loading: selectLoading
+});
+
+const SignInForm = ({
+  signInWithGoogle,
+  signInWithEmailAndPassword,
+  loading
+}) => {
   const { register, handleSubmit, errors, setValue } = useForm();
 
-  const onSubmit = data => {
-    console.log(data);
+  const onSubmit = ({ email, password }) => {
+    signInWithEmailAndPassword({ email, password });
     setValue('email', '');
     setValue('password', '');
   };
 
-  return (
+  return !loading ? (
     <form className="form-signin" onSubmit={handleSubmit(onSubmit)}>
       <FormInput
         name="email"
@@ -76,7 +96,9 @@ const SignInForm = () => {
         <GoogleIcon className="btn__inner-icon" />
       </CustomButton>
     </form>
+  ) : (
+    <FormLoading signin />
   );
 };
 
-export default SignInForm;
+export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);

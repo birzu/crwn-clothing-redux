@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { useForm } from 'react-hook-form';
 
 import { ReactComponent as EmailIcon } from '../../../assets/iconmonstr-email-3.svg';
@@ -6,25 +8,36 @@ import { ReactComponent as LockIcon } from '../../../assets/iconmonstr-lock-1.sv
 import { ReactComponent as UserIcon } from '../../../assets/iconmonstr-user-1.svg';
 import { ReactComponent as GoogleIcon } from '../../../assets/google-brands.svg';
 
-import FormError from '../form-error/FormError.component';
+import { selectLoading } from '../../../redux/selectors/user.selectors';
+import { userSignup } from '../../../redux/reducers/user.reducer';
 
+import FormError from '../form-error/FormError.component';
 import FormInput from '../../form-input/FormInput.component';
 import CustomButton from '../../custom-button/CustomButton.component';
 
 import '../Form.styles.scss';
+import FormLoading from '../form-loading/FormLoading.component';
 
-const RegisterForm = () => {
+const mapDispatchToProps = dispatch => ({
+  userSignup: credentials => dispatch(userSignup(credentials))
+});
+
+const mapStateToProps = createStructuredSelector({
+  loading: selectLoading
+});
+
+const RegisterForm = ({ userSignup, loading }) => {
   const { register, handleSubmit, errors, watch, setValue } = useForm();
 
-  const onSubmit = data => {
+  const onSubmit = ({ username, email, password }) => {
+    userSignup({ displayName: username, email, password });
     setValue('username', '');
     setValue('email', '');
     setValue('password', '');
     setValue('password-confirm', '');
-    console.log(data);
   };
 
-  return (
+  return !loading ? (
     <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
       <FormInput
         id="form-input-username"
@@ -50,7 +63,7 @@ const RegisterForm = () => {
           pattern: {
             value: /^[A-Za-z0-9_]{1,15}$/,
             message:
-              'Username can contain uppercase letters, lowercase letters, numbers and _ '
+              'Username can contain only uppercase letters, lowercase letters, numbers and _ '
           }
         })}
       >
@@ -131,7 +144,9 @@ const RegisterForm = () => {
         <GoogleIcon className="btn__inner-icon" />
       </CustomButton>
     </form>
+  ) : (
+    <FormLoading register />
   );
 };
 
-export default RegisterForm;
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);

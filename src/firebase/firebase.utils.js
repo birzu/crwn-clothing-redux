@@ -11,10 +11,39 @@ export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 
-export const signInWithGoogle = () => {
-  return auth.signInWithPopup(provider);
+export const getAuthProvider = () => {
+  return provider;
 };
 
+// AUTH UTILS
+export const createUserProfile = async (userAuth, additionalData = {}) => {
+  // get required data from the userAuth
+  const { uid, displayName, photoURL, email } = userAuth;
+  // create userRef object
+  const userRef = firestore.doc(`users/${uid}`);
+  const snapShot = await userRef.get();
+  // if user already exists in db return
+  if (snapShot.exists) return userRef;
+  // else create user in db
+  try {
+    const createdAt = Date.now();
+    userRef.set({ createdAt, displayName, photoURL, email, ...additionalData });
+  } catch (error) {
+    console.log(error.message);
+  }
+  return userRef;
+};
+
+export const checkUserSession = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
+
+// DATABASE UTILS
 export const createCollections = async (key, data) => {
   const collectionsRef = firestore.collection(key);
   const snapShot = await collectionsRef.get();

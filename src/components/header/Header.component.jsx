@@ -9,9 +9,11 @@ import {
   toggleAuthModalHidden,
   toggleCurrentForm
 } from '../../redux/reducers/auth.reducer';
+import { userSignout } from '../../redux/reducers/user.reducer';
 import { toggleCartHidden } from '../../redux/reducers/cart.reducer';
 import { selectCartHidden } from '../../redux/selectors/cart.selectors';
 import { selectAuthModalHidden } from '../../redux/selectors/auth.selectors';
+import { selectCurrentUser } from '../../redux/selectors/user.selectors';
 
 import CartIcon from '../cart-icon/CartIcon.component';
 import CartModal from '../cart-modal/CartModal.component';
@@ -22,13 +24,15 @@ import './Header.styles.scss';
 
 const mapStateToProps = createStructuredSelector({
   authModalHidden: selectAuthModalHidden,
-  cartModalHidden: selectCartHidden
+  cartModalHidden: selectCartHidden,
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = dispatch => ({
   toggleAuthModalHidden: () => dispatch(toggleAuthModalHidden()),
   toggleCurrentForm: formType => dispatch(toggleCurrentForm(formType)),
-  toggleCartHidden: () => dispatch(toggleCartHidden())
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
+  signOut: () => dispatch(userSignout())
 });
 
 const Header = ({
@@ -36,7 +40,9 @@ const Header = ({
   toggleAuthModalHidden,
   toggleCurrentForm,
   toggleCartHidden,
-  cartModalHidden
+  cartModalHidden,
+  currentUser,
+  signOut
 }) => {
   const renderAuthModal = () => {
     return <FormModal />;
@@ -65,24 +71,37 @@ const Header = ({
           </div>
 
           <ul className="app-header__nav">
-            <li
-              className="app-header__nav-item app-header__nav-btn app-header__nav-btn--register"
-              onClick={() => {
-                toggleCurrentForm('register');
-                toggleAuthModalHidden();
-              }}
-            >
-              REGISTER
-            </li>
-            <li
-              className="app-header__nav-item app-header__nav-btn app-header__nav-btn--signin"
-              onClick={() => {
-                toggleCurrentForm('signin');
-                toggleAuthModalHidden();
-              }}
-            >
-              SIGN IN
-            </li>
+            {!currentUser ? (
+              <Fragment>
+                <li
+                  className="app-header__nav-item app-header__nav-btn app-header__nav-btn--register"
+                  onClick={() => {
+                    toggleCurrentForm('register');
+                    toggleAuthModalHidden();
+                  }}
+                >
+                  REGISTER
+                </li>
+                <li
+                  className="app-header__nav-item app-header__nav-btn app-header__nav-btn--signin"
+                  onClick={() => {
+                    toggleCurrentForm('signin');
+                    toggleAuthModalHidden();
+                  }}
+                >
+                  SIGN IN
+                </li>
+              </Fragment>
+            ) : (
+              <li
+                className="app-header__nav-item app-header__nav-btn app-header__nav-btn--signout"
+                onClick={() => {
+                  signOut();
+                }}
+              >
+                SIGN OUT
+              </li>
+            )}
             <li
               className="app-header__nav-item app-header__nav-btn app-header__nav-btn--cart"
               onClick={e => {

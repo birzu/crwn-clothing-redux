@@ -6,12 +6,14 @@ import menuReducer from './menu.reducer';
 import authReducer from './auth.reducer';
 import shopReducer from './shop.reducer';
 import cartReducer from './cart.reducer';
+import userReducer from './user.reducer';
 
 const rootReducer = combineReducers({
   menu: menuReducer,
   auth: authReducer,
   shop: shopReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  user: userReducer
 });
 
 const persistConfig = {
