@@ -8,7 +8,10 @@ import AuthModalHeader from '../../AuthModalHeader/AuthModalHeader.component';
 
 import { selectCurrentForm } from '../../../redux/selectors/auth.selectors';
 import { toggleAuthModalHidden } from '../../../redux/reducers/auth.reducer';
-import { selectCurrentUser } from '../../../redux/selectors/user.selectors';
+import {
+  selectCurrentUser,
+  selectLoading
+} from '../../../redux/selectors/user.selectors';
 
 import './FormModal.styles.scss';
 
@@ -22,20 +25,25 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = createStructuredSelector({
   currentForm: selectCurrentForm,
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+  loading: selectLoading
 });
 
 const ModalWithHeader = (ModalHeader, content) => ({
   toggleAuthModalHidden,
   currentForm,
-  currentUser
+  currentUser,
+  loading
 }) => {
   const Form = content[currentForm];
   if (currentUser) toggleAuthModalHidden();
   return ReactDOM.createPortal(
     <div className="modal-wrapper" onClick={() => toggleAuthModalHidden()}>
       <div className="modal" onClick={e => e.stopPropagation()}>
-        <div className="modal-header">
+        <div
+          style={loading ? { visibility: 'hidden' } : {}}
+          className="modal-header"
+        >
           <ModalHeader />
         </div>
         {<Form />}

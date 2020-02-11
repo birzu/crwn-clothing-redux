@@ -1,6 +1,11 @@
 @import '../../../sass/abstracts/mixins';
 @import '../../../sass/base/animations';
+
 .form-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   &--signin {
     height: 46rem;
   }
@@ -8,14 +13,22 @@
   &--register {
     height: 62rem;
   }
+
+  &__msg {
+    color: #3c3c3c;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 4rem;
+  }
   &__anim {
     @include absoluteCenter;
     display: flex;
+    top: 45%;
   }
   &__circle {
     width: 1.8rem;
     height: 1.8rem;
-    background-color: #3c3c3c;
+    background-color: #d44359;
     border-radius: 100%;
     animation: bounce 1.4s infinite ease-out;
 

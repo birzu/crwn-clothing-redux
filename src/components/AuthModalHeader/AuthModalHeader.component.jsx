@@ -7,6 +7,7 @@ import {
   toggleCurrentForm
 } from '../../redux/reducers/auth.reducer';
 import { selectCurrentForm } from '../../redux/selectors/auth.selectors';
+import { selectLoading } from '../../redux/selectors/user.selectors';
 
 import './AuthModalHeader.styles.scss';
 
@@ -16,16 +17,21 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  currentForm: selectCurrentForm
+  currentForm: selectCurrentForm,
+  loading: selectLoading
 });
 
 const AuthModalHeader = ({
   toggleAuthModalHidden,
   toggleCurrentForm,
-  currentForm
+  currentForm,
+  loading
 }) => {
   return (
-    <div className="auth-modal-header">
+    <div
+      style={loading ? { display: 'none' } : {}}
+      className="auth-modal-header"
+    >
       <div
         onClick={() => {
           toggleCurrentForm('signin');

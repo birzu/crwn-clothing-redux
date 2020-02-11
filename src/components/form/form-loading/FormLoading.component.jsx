@@ -9,6 +9,11 @@ const FormLoading = ({ signin }) => {
         signin ? 'form-loading--signin' : 'form-loading--register'
       }`}
     >
+      <div className="form-loading__msg">
+        {signin
+          ? 'Please wait... logging in'
+          : 'Please wait... registering as new user'}
+      </div>
       <div className="form-loading__anim">
         <div className="form-loading__circle form-loading__circle--1"></div>
         <div className="form-loading__circle form-loading__circle--2"></div>
